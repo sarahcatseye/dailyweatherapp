@@ -1,23 +1,24 @@
 package com.example.springytest;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(using = LocationDeserializer.class)
 public class Location {
     private String title;
-    private LocationType locationType;
-    private float latitude;
-    private float longitude;
     private int woeid;
-    private int distance;
+    private Forecast forecast;
 
-    public Location(String title, LocationType locationType, float latitude, float longitude, int woeid) {
+
+    public Location(String title, int woeid) {
         this.title = title;
-        this.locationType = locationType;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.woeid = woeid;
     }
 
-    public Location(String title, LocationType locationType, float latitude, float longitude, int woeid, int distance) {
-        this(title, locationType, latitude, longitude, woeid);
-        this.distance = distance;
+    public String getTitle() {
+        return title;
+    }
+
+    public int getWoeid() {
+        return woeid;
     }
 }

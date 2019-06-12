@@ -1,18 +1,29 @@
 package com.example.springytest;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.json.JSONArray;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
+import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class SpringyTestService {
-    public String getLocationSearch(String location) throws IOException {
-        String uri = "https://www.metaweather.com//api/location/search/?query=";
-        return HTTPrequest(uri + location);
+    public List<Location> getLocationSearch(String location) throws IOException, JSONException {
+        String uri = "https://www.metaweather.com/api/location/search/?query=";
+        String apiResult = HTTPrequest(uri + location);
+        return deserializeToLocation(apiResult);
+        //return HTTPrequest(uri + location);
     }
 
     public String getLocationSearch(String latt, String longi) throws IOException {
-        String uri = "https://www.metaweather.com//api/location/search/?lattlong=";
+        String uri = "https://www.metaweather.com/api/location/search/?lattlong=";
         return HTTPrequest(uri + latt + "," + longi);
     }
 
@@ -32,5 +43,16 @@ public class SpringyTestService {
         ResponseEntity<String> response
                 = restTemplate.getForEntity(uri, String.class);
         return response.getBody();
+    }
+
+    public List<Location> deserializeToLocation(String json) throws IOException, JsonParseException, JSONException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Location> locationList = Arrays.asList(mapper.readValue(json, Location[].class));
+        return locationList;
+    }
+
+    public Forecast deserializeToForecast(String json) throws IOException, JsonParseException {
+        ObjectMapper mapper = new ObjectMapper();
+        return null;
     }
 }
