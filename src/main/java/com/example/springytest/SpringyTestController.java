@@ -1,12 +1,10 @@
 package com.example.springytest;
 
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -16,8 +14,8 @@ public class SpringyTestController {
     private SpringyTestService service;
 
     @RequestMapping(method = RequestMethod.GET, value = "/locationSearch/location")
-    public List<Location> getLocationSearchServiceThroughLocation(@RequestParam(value = "location", defaultValue = "atlanta") String location) throws IOException, JSONException {
-        return service.getLocationSearch(location);
+    public String getLocationSearchServiceThroughLocation(@RequestParam(value = "location", defaultValue = "atlanta") String location) throws IOException {
+        return service.getLocationSearch(location).get(0).getTitle();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/locationSearch/lattlong")

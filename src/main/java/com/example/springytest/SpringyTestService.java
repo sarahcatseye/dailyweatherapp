@@ -1,11 +1,6 @@
 package com.example.springytest;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
-import org.json.JSONArray;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONException;
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SpringyTestService {
-    public List<Location> getLocationSearch(String location) throws IOException, JSONException {
+    public List<Location> getLocationSearch(String location) throws IOException {
         String uri = "https://www.metaweather.com/api/location/search/?query=";
         String apiResult = HTTPrequest(uri + location);
         return deserializeToLocation(apiResult);
@@ -45,7 +40,7 @@ public class SpringyTestService {
         return response.getBody();
     }
 
-    public List<Location> deserializeToLocation(String json) throws IOException, JsonParseException, JSONException {
+    public List<Location> deserializeToLocation(String json) throws IOException, JsonParseException {
         ObjectMapper mapper = new ObjectMapper();
         List<Location> locationList = Arrays.asList(mapper.readValue(json, Location[].class));
         return locationList;
