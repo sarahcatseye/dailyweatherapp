@@ -1,0 +1,12 @@
+div {
+  text-align: center;
+}
+
+.sun {
+  height: 350px;
+  width: 350px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  animation: App-logo-spin infinite 20s linear;
+  pointer-events: none;
+}
