@@ -14,19 +14,20 @@ public class SpringyTestController {
     private SpringyTestService service;
 
     @RequestMapping(method = RequestMethod.GET, value = "/locationSearch/location")
-    public String getLocationSearchServiceThroughLocation(@RequestParam(value = "location", defaultValue = "atlanta") String location) throws IOException {
-        return service.getLocationSearch(location).get(0).getTitle();
+    public List<Location> getLocationSearchServiceThroughLocation(@RequestParam(value = "location", defaultValue = "atlanta") String location) throws IOException {
+        return service.getLocationSearch(location);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/locationSearch/lattlong")
-    public String getLocationSearchServiceThroughLattLong(@RequestParam(value = "latt", defaultValue = "36.96") String latt,
-                                                          @RequestParam(value = "long", defaultValue = "-122.02") String longi) throws IOException {
+    public List<Location> getLocationSearchServiceThroughLattLong(@RequestParam(value = "latt", defaultValue = "36.96") String latt,
+                                                          @RequestParam(value = "longi", defaultValue = "-122.02") String longi) throws IOException {
         return service.getLocationSearch(latt, longi);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "location")
     public String getLocationService(@RequestParam(value = "woeid", defaultValue = "2357024") String woeid) throws IOException {
-        return service.getLocation(woeid);
+        int intWoeid = Integer.parseInt(woeid);
+        return service.getLocation(intWoeid);
     }
     @RequestMapping(method = RequestMethod.GET, value ="locationDate")
     public String getLocationDateService(@RequestParam(value = "woeid", defaultValue = "2357024") String woeid,
@@ -36,4 +37,9 @@ public class SpringyTestController {
         return service.getLocationDate(woeid, year, month, day);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "locationSearch/woeid")
+    public Location getOneLocation(@RequestParam(value = "location", defaultValue = "2357024") String woeid) throws IOException {
+        int intWoeid = Integer.parseInt(woeid);
+        return service.getDetailedLocation(intWoeid);
+    }
 }

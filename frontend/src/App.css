@@ -31,3 +31,19 @@
     transform: rotate(360deg);
   }
 }
+
+.form {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.resultImage {
+  display: block;
+  margin: auto;
+  width: 100px;
+}
+
+.temp {
+  font-size: 100px;
+}

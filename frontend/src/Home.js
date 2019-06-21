@@ -16,7 +16,7 @@ class Home extends Component {
             <h1>Welcome.</h1>
             <p>This web application will display the weather of the day.
             It uses the Metaweather API to show your daily forecast.
-            To begin, type the name of your location in the search box above.
+            To begin, pick which search you wish to use above.
             </p>
           </div>
         </Container>

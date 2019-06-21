@@ -21,4 +21,10 @@ public class Location {
     public int getWoeid() {
         return woeid;
     }
+
+    public Forecast getForecast() {return forecast;}
+
+    public void setForecast(Forecast forecast) {
+        this.forecast = forecast;
+    }
 }
