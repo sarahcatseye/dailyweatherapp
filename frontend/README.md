@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is a Spring Boot application. To run, you must build the project with Maven and run the jar to get the backend running, and then run the frontend by navigating to the frontend directory and using the command 'npm start.'
 
 ## Available Scripts
 
