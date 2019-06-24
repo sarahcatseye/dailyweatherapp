@@ -16,7 +16,7 @@ class App extends Component {
   handleSearchResultChange(results) {
     this.setState({searchResults: results});
   }
-
+  
   render() {
     return (
       <Router>
